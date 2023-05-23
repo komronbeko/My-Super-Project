@@ -17,7 +17,6 @@ const homeControlller = async(req, res)=>{
     } catch (error) {
         res.status(403).json({message: error.message});
     }
-
 }
 
 module.exports = homeControlller;

@@ -32,6 +32,10 @@
       {
         "state": "true",
         "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      },
+      {
+        "state": "false",
+        "subscriber_id": "76578d4f-1476-42fa-a72c-e2e91af98fdd"
       }
     ]
   },
@@ -44,6 +48,10 @@
       {
         "state": "true",
         "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      },
+      {
+        "state": "true",
+        "subscriber_id": "4dfffbe2-cd68-4c67-89ee-8cc6c1cdba5b"
       }
     ]
   },
@@ -56,6 +64,10 @@
       {
         "state": "true",
         "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      },
+      {
+        "state": "true",
+        "subscriber_id": "4dfffbe2-cd68-4c67-89ee-8cc6c1cdba5b"
       }
     ]
   },
@@ -68,7 +80,18 @@
       {
         "state": "true",
         "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      },
+      {
+        "state": "true",
+        "subscriber_id": "4dfffbe2-cd68-4c67-89ee-8cc6c1cdba5b"
       }
     ]
+  },
+  {
+    "id": "4dfffbe2-cd68-4c67-89ee-8cc6c1cdba5b",
+    "username": "test",
+    "password": "$2b$12$EW48B5F5gw/zEblMe0d97.vS43AzY.VCed9FIb2R3.rYLCrNMvxES",
+    "image": "f729140c-ddd5-4f36-8e0d-9db8516bd86e.jpeg",
+    "subscribe": []
   }
 ]

@@ -1,5 +1,6 @@
 const {v4: uuid} = require("uuid");
 const bcrypt = require("bcrypt");
+const Joi = require("joi");
 
 const {sign} = require("../utils/jwt")
 
@@ -12,6 +13,17 @@ const register =  async(req, res)=>{
     try {
         const {username, password} = req.body;
         const {image} = req.files;
+
+        const schema = Joi.object({
+            username: Joi.string().alphanum().required(),
+            password: Joi.string().required(),
+        });
+
+
+        const {error} = schema.validate({username, password});
+        if(error){
+            return res.render("register");
+        } 
     
         const usersData = await Users.read();
         
@@ -51,6 +63,17 @@ const register =  async(req, res)=>{
 const login = async(req, res)=>{
     try {
         const {username, password} = req.body;
+
+        const schema = Joi.object({
+            username: Joi.string().alphanum().required(),
+            password: Joi.string().required(),
+        });
+
+
+        const {error} = schema.validate({username, password});
+        if(error){
+            return res.render("login");
+        } 
     
         const usersData = await Users.read();
         

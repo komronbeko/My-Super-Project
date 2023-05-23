@@ -105,7 +105,7 @@
                     <p class="font-medium text-blue-500">Posts <%= filteredPosts.length%></p>
                     <p class="font-medium text-violet-500 mb-12">Followers <%= findUser.subscribe.length%></p>
                     <form action="/api/subscribe/<%= findUser.id %>" method="post">
-                        <button class="py-1 px-3 rounded font-medium text-md border border-solid border-red-600 <%= subscribeAssets.state === "false" ? "bg-red-500 text-white" : "bg-white text-red-600"%>"><%= subscribeAssets.state === "true" ? "subscribed" : "subscribe"%></button>
+                        <button class="py-1 px-3 rounded font-medium text-md border border-solid border-red-600 <%= subscribeAssets?.state === "false" ? "bg-red-500 text-white" : "bg-white text-red-600"%>"><%= subscribeAssets?.state === "true" ? "subscribed" : "subscribe"%></button>
                     </form>
                 </div>
             </div>

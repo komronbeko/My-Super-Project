@@ -1,4 +1,5 @@
 const { v4: uuid } = require("uuid");
+const Joi = require("joi");
 
 const Io = require("../../utils/Io");
 const Posts = new Io("database/posts.json");
@@ -18,6 +19,18 @@ const postController = async (req, res) => {
   try {
     const { title, description, place } = req.body;
     const { video } = req.files;
+
+    const schema = Joi.object({
+      username: Joi.string().alphanum().required(),
+      password: Joi.string().required(),
+      place: Joi.string()
+  });
+
+
+  const {error} = schema.validate({username, password, place});
+  if(error){
+      return res.render("post");
+  } 
 
     const postsData = await Posts.read();
 
