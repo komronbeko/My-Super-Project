@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<style>
+    .menu-btn {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .menu-btn.active {
+        display: none;
+    }
+
+    .menu-btn.active {
+        top: 50%;
+        transform: translate(-50%, 0%) rotate(45deg);
+    }
+
+    .menu-btn.active {
+        top: 50%;
+        transform: translate(-50%, 0%) rotate(-45deg);
+    }
+
+    .menu {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+
+    .menu.active {
+        transform: translateX(0);
+        top: 50px;
+        left: 80px;
+    }
+
+    .menu li {
+        list-style-type: none;
+    }
+</style>
+
+<body>
+    <header class="flex justify-between items-start px-5 py-5">
+        <div class="flex items-center gap-10">
+            <img class="menu-btn rounded-full w-16 h-16 color-red" src="/api/<%= personalAccount.image %>" alt="">
+            <a href="allPosts"
+                class="inline-flex items-center text-2xl font-bold text-blue-600 dark:text-blue-500 hover:underline">
+                Barch postlar
+                <svg aria-hidden="true" class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="flex gap-10 items-center">
+            <a href="post">
+                <button
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-medium text-xl hover:text-white py-1.5 px-6 border-2 border-blue-500 hover:border-transparent rounded">
+                    Post
+                </button>
+            </a>
+            <a href="/api/logout">
+                <button
+                    class="bg-transparent hover:bg-amber-300 text-amber-300 font-medium text-xl hover:text-red-600 py-1.5 px-6 border-2 border-amber-300 border-solid hover:border-transparent rounded">
+                    Log out
+                </button>
+            </a>
+        </div>
+        <div class="menu z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+            id="user-dropdown">
+            <div class="px-10 py-3">
+                <span class="block text-sm text-gray-900 dark:text-white"><%= personalAccount.username %></span>
+                <a href="/api/editAvatar" class="block text-sm mt-2 text-gray-700">Change
+                    Avatar</a>
+            </div>
+            <ul class="py-2" aria-labelledby="user-menu-button">
+                <li>
+                    <a href="/api/posts/likes"
+                        class="block px-10 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Likes</a>
+                </li>
+                <li>
+                    <a href="/api/posts/histories"
+                        class="block px-10 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">histories</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+
+    <div class="grid grid-cols-4 gap-2">
+      <% users.map((el)=>{%>
+        <div
+            class="mx-auto mt-11 w-[350px] transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+            <a href="post/<%= el.id%>">
+                <img src="/api/<%= el.image %>" class="h-48 w-full object-cover object-center rounded-b-lg"
+                    alt="Product Image" />
+            </a>
+            <div class="p-4">
+                <h2 class="mb-2 text-lg font-medium dark:text-white text-gray-900"><%= el.username %></h2>
+            </div>
+        </div>
+      <% })%>
+    </div>
+
+    <script>
+        const menuBtn = document.querySelector(".menu-btn");
+        const menu = document.querySelector(".menu");
+
+        menuBtn.addEventListener("click", function () {
+            menu.classList.toggle('active');
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "76578d4f-1476-42fa-a72c-e2e91af98fdd",
+    "username": "Komronbek",
+    "password": "$2b$12$TBwl7NEoBryDDyXfXUiFhOts.HjTV0b60KfgkwvxsZt012ci7boW.",
+    "image": "9fd0ea9d-0c88-41ea-ab18-f79981697298.jpeg",
+    "subscribe": [
+      {
+        "state": "false",
+        "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      }
+    ]
+  },
+  {
+    "id": "895ef5f4-b656-4456-9ff6-6e6c814b4797",
+    "username": "eshmat",
+    "password": "$2b$12$nXqeNp4BUOzMt9GhqlN9Ye8WfE7XTWorf/GGU59nP8wuINJKgssK6",
+    "image": "584f7d4b-1866-4a8f-92e8-89bc9fae5f94.webp",
+    "subscribe": [
+      {
+        "state": "true",
+        "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      }
+    ]
+  },
+  {
+    "id": "9d11635c-4f69-4800-a65e-50fefa454ec3",
+    "username": "tesha",
+    "password": "$2b$12$ZDGtDG6sFpRDS6PM69k7XulglfMSnDNcZD4lQt5LYoDN7mmihnWJW",
+    "image": "315fafff-cc1a-4734-82b1-1f9725cb4e0a.jpeg",
+    "subscribe": [
+      {
+        "state": "true",
+        "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      }
+    ]
+  },
+  {
+    "id": "3604a36c-aea1-400e-a7cc-0601e28bf15b",
+    "username": "dummy",
+    "password": "$2b$12$KrFO0ZXIA6UkTeLChU56v.dhRE.uclwAUVcPHhbJT7sKpvrm6vC1u",
+    "image": "5da6ec64-9db5-4421-984f-9d0349c29cba.jpeg",
+    "subscribe": [
+      {
+        "state": "true",
+        "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      }
+    ]
+  },
+  {
+    "id": "14132ea3-6c45-4bae-8d24-cc18724adb01",
+    "username": "umarbek",
+    "password": "$2b$12$WdRtRPUo/lBnpH4FITxqDehpaJu.sbscHw9lIUrT1gT3.9/75y2v6",
+    "image": "c04bfb13-78b7-4633-bbe0-c5b0d14f9632.jpeg",
+    "subscribe": [
+      {
+        "state": "true",
+        "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      }
+    ]
+  },
+  {
+    "id": "70f505a2-685a-40bf-ac1f-429e1e9bf599",
+    "username": "diyorbek",
+    "password": "$2b$12$33cmxYT8gCZIU55J.tJCcee3Kqbr/URNfZKQPpZuQLswXXrHs3v/m",
+    "image": "3c3f60dc-56c4-4368-8c3d-bff6a2081c1b.png",
+    "subscribe": [
+      {
+        "state": "true",
+        "subscriber_id": "3604a36c-aea1-400e-a7cc-0601e28bf15b"
+      }
+    ]
+  }
+]

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<style>
+    /* <!----- arrow link uchun yozilgan stillar, internetdan olingan holos, prosta still uchun iwlatildi ------!> */
+    .arrow {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: 0.5s;
+        overflow: hidden;
+    }
+
+    .arrow:hover {
+        border: solid 2px blue;
+        border-radius: 50%;
+    }
+
+    .arrow:after {
+        position: absolute;
+        display: block;
+        content: "";
+        color: blue;
+        width: 20px;
+        height: 15px;
+        top: -1px;
+        border-bottom: solid 2px;
+        transform: translatex(4px);
+    }
+
+    .arrow:before {
+        position: absolute;
+        display: block;
+        content: "";
+        color: blue;
+        width: 8px;
+        height: 8px;
+        border-top: solid 2px;
+        border-left: solid 2px;
+        top: 50%;
+        left: 2px;
+        transform-origin: 0% 0%;
+        transform: rotatez(-45deg);
+
+    }
+
+    .arrow:hover:before {
+        animation: aniArrow01 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+    }
+
+    .arrow:hover:after {
+        animation: aniArrow02 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+    }
+
+
+    @keyframes aniArrow01 {
+        0% {
+            transform: rotatez(-45deg) translateY(30px) translateX(30px);
+        }
+
+        100% {
+            transform: rotatez(-45deg) translateY(-35px) translateX(-35px);
+        }
+    }
+
+
+    @keyframes aniArrow02 {
+        0% {
+            transform: translateX(45px);
+        }
+
+        100% {
+            transform: translateX(-44px);
+        }
+    }
+
+    @keyframes borderAni {
+        0% {
+            border: solid 2px blue;
+        }
+
+        100% {
+            border: solid 2px blue;
+            border-radius: 50%;
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .like {
+        background-color: #207280 !important;
+    }
+
+    .dislike {
+        background-color: #e67a4c !important;
+    }
+</style>
+
+<body>
+    <header>
+        <div class="flex gap-2 mt-5 ml-5">
+            <a href="/api/home"
+                class="flex items-center gap-2 inline-flex items-center text-2xl font-bold text-blue-600 dark:text-blue-500 hover:underline">
+                <div class="arrow"></div>
+                Home Page
+            </a>
+        </div>
+    </header>
+    <div
+        class="ml-20 mt-10 w-[900px] transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-lg duration-300">
+        <video class="bg-cover h-[400px] w-full object-cover object-center rounded-b-lg" controls>
+            <source src="/api/<%= postAssets.video %>" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="p-4">
+            <div class="flex justify-between">
+                <h2 class="mb-2 text-lg font-medium dark:text-white text-gray-900"><%= postAssets.title %></h2>
+                <div class="flex gap-5">
+                    <div class="flex gap-1 items-center px-4 py-1 rounded-md bg-slate-100">
+                        <svg class="h-8 w-8 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                        <span class="text-pink-500 font-medium text-md mb-0.5"><%= postAssets.views.length %></span>
+                    </div>
+                    <div class="flex">
+                        <form action="/api/likes/<%= postAssets.id %>" method="post">
+                            <button
+                                class="<%= likeAssets?.state == "true" ? "like flex items-end bg-slate-100 pb-1 hover:bg-slate-200 rounded-l-lg border-r border-gray-400 px-3" : "flex items-end bg-slate-100 pb-1 hover:bg-slate-200 rounded-l-lg border-r border-gray-400 px-3" %>">
+                                <svg class="like-icon cursor-pointer h-8 w-8 text-yellow-500" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <path
+                                        d="M7 11v 8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
+                                </svg>
+                                <span
+                                    class="text-yellow-500 font-medium text-md mb-0.5"><%= like_quantity.length %></span>
+                            </button>
+                        </form>
+                        <form action="/api/dislikes/<%= postAssets.id %>" method="post">
+                            <button
+                                class="<%= dislikeAssets?.state == "true" ? "dislike flex items-end bg-slate-100 hover:bg-slate-200 rounded-r-lg px-3 pb-1" : "flex items-end bg-slate-100 hover:bg-slate-200 rounded-r-lg px-3 pb-1" %>">
+                                <svg class="dislike-icon cursor-pointer h-8 w-8 text-black" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <path
+                                        d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v 1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" />
+                                </svg>
+                                <% if (postAssets.user_id === access_id) { %>
+                                <span
+                                    class="text-black font-medium text-md mb-0.5"><%= dislike_quantity.length %></span>
+                                <% } %>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p class="mb-2 text-base dark:text-gray-300 text-gray-700"><%= postAssets.description %></p>
+            <div class="flex items-center">
+                <p class="mr-2 text-lg font-semibold text-gray-900 dark:text-white"><%= postAssets.place %></p>
+                <p class="ml-auto text-base font-medium text-green-500"><%= postAssets.date %></p>
+            </div>
+            <% if (postAssets.user_id === access_id) { %>
+            <div class="flex justify-between pt-3">
+                <form action="/api/post/delete/<%= postAssets.id%>" method="post">
+                    <button
+                        class="text-red-600 font-medium px-3 py-1 border border-solid border-red-600 rounded-md hover:bg-red-600 hover:text-white">delete</button>
+                </form>
+                <form action="/api/post/edit/<%= postAssets.id%>" method="get">
+                    <button
+                        class="text-violet-600 font-medium px-3 py-1 border border-solid border-violet-600 rounded-md hover:bg-violet-600 hover:text-white">edit</button>
+                </form>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>

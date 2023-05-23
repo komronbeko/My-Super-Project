@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Document</title>
+</head>
+<style>
+  /* <!----- arrow link uchun yozilgan stillar, internetdan olingan holos, prosta still uchun iwlatildi ------!> */
+  .arrow {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.5s;
+    overflow: hidden;
+  }
+
+  .arrow:hover {
+    border: solid 2px blue;
+    border-radius: 50%;
+  }
+
+  .arrow:after {
+    position: absolute;
+    display: block;
+    content: "";
+    color: blue;
+    width: 20px;
+    height: 15px;
+    top: -1px;
+    border-bottom: solid 2px;
+    transform: translatex(4px);
+  }
+
+  .arrow:before {
+    position: absolute;
+    display: block;
+    content: "";
+    color: blue;
+    width: 8px;
+    height: 8px;
+    border-top: solid 2px;
+    border-left: solid 2px;
+    top: 50%;
+    left: 2px;
+    transform-origin: 0% 0%;
+    transform: rotatez(-45deg);
+
+  }
+
+  .arrow:hover:before {
+    animation: aniArrow01 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+  }
+
+  .arrow:hover:after {
+    animation: aniArrow02 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+  }
+
+
+  @keyframes aniArrow01 {
+    0% {
+      transform: rotatez(-45deg) translateY(30px) translateX(30px);
+    }
+
+    100% {
+      transform: rotatez(-45deg) translateY(-35px) translateX(-35px);
+    }
+  }
+
+
+  @keyframes aniArrow02 {
+    0% {
+      transform: translateX(45px);
+    }
+
+    100% {
+      transform: translateX(-44px);
+    }
+  }
+
+  @keyframes borderAni {
+    0% {
+      border: solid 2px blue;
+    }
+
+    100% {
+      border: solid 2px blue;
+      border-radius: 50%;
+    }
+  }
+</style>
+
+<body>
+
+  <header class="flex justify-between items-start px-5 py-5">
+    <div class="flex items-center gap-40">
+      <div class="flex gap-2">
+        <a href="home"
+          class="flex items-center gap-2 inline-flex items-center text-2xl font-bold text-blue-600 dark:text-blue-500 hover:underline">
+          <div class="arrow"></div>
+          Home Page
+        </a>
+      </div>
+      <p class="text-4xl text-blue-500 font-medium">Barcha Postlar</p>
+    </div>
+    <a href="post">
+      <button
+        class="bg-transparent hover:bg-blue-500 text-blue-700 font-medium text-2xl hover:text-white pt-2 pb-3 px-6 border border-blue-500 hover:border-transparent rounded">
+        post
+      </button>
+    </a>
+  </header>
+
+
+  <div class="grid grid-cols-4 gap-2">
+    <% posts.map((el)=>{%>
+    <a href="/api/postOne/<%= el.id%>">
+      <div
+        class="mx-auto mt-11 w-[350px] transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+        <video autoplay loop muted
+          class="mx-auto mt-11 w-[350px] transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+          <source src="/api/<%= el.video %>" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+        <div class="p-4">
+          <h2 class="mb-2 text-lg font-medium dark:text-white text-gray-900"><%= el.title %></h2>
+          <p class="mb-2 text-base dark:text-gray-300 text-gray-700"><%= el.description %></p>
+          <div class="flex items-center">
+            <p class="mr-2 text-lg font-semibold text-gray-900 dark:text-white"><%= el.place %></p>
+            <p class="ml-auto text-base font-medium text-green-500"><%= el.date %></p>
+          </div>
+        </div>
+      </div>
+    </a>
+    <% })%>
+  </div>
+</body>
+
+</html>
